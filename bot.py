@@ -10,8 +10,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        "👋 Welcome!\n\nClick below to receive payment details.",
-        reply_markup=reply_markup
+        "<b>👋 Welcome!</b>\n\n"
+        "Click the button below to receive payment details.",
+        reply_markup=reply_markup,
+        parse_mode="HTML"
     )
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -20,12 +22,16 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if query.data == "payment":
         await query.edit_message_text(
-            "💎 Payment Details:\n\n"
-            "Network: TRC20\n"
-            "Coin: USDT\n"
-            "Wallet:\n"
-            "0x0E91C9A766f5197869859cc73F5D68c73674C657\n\n"
-            "After payment, send the screenshot here."
+            "<b>🔐 EXCLUSIVE ACCESS PAYMENT</b>\n\n"
+            "━━━━━━━━━━━━━━━━━━\n\n"
+            "<b>Network:</b> TRC20\n"
+            "<b>Currency:</b> USDT\n\n"
+            "<b>Wallet Address:</b>\n"
+            "<code>0x0E91C9A766f5197869859cc73F5D68c73674C657</code>\n\n"
+            "━━━━━━━━━━━━━━━━━━\n\n"
+            "⚠️ <i>After completing the payment, please send the transaction screenshot here.\n"
+            "Access will be granted once confirmed.</i>",
+            parse_mode="HTML"
         )
 
 app = ApplicationBuilder().token(TOKEN).build()
